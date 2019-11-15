@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import axiosWithAuth from '../utils/axiousWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import styled from 'styled-components';
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -26,14 +27,33 @@ const Login = props => {
       .catch(err => console.log(err));
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type='text' name='username' onChange={onChangeHandler} />
-        <input type='password' name='password' onChange={onChangeHandler} />
-        <button type='submit'>Log in</button>
-      </form>
-    </div>
+    <LoginPage>
+      <h1> Login to see the Bubbles!! </h1>
+      <LoginForm onSubmit={handleSubmit}>
+        <input type='text' name='username' placeholder='username' onChange={onChangeHandler} />
+        <input type='password' name='password' placeholder='password' onChange={onChangeHandler} />
+        <LoginButton type='submit'>Log in</LoginButton>
+      </LoginForm>
+    </LoginPage>
   );
 };
 
 export default Login;
+
+// styled components:
+
+const LoginPage = styled.div`
+  margin: 0 auto;
+  background-color: lightblue;
+`;
+
+const LoginForm = styled.form`
+  margin: 0 auto;
+  padding-left: 150px;
+`;
+
+const LoginButton = styled.button`
+  width: 40%;
+  border-radius: 20px;
+  margin-top: 20px;
+`;
